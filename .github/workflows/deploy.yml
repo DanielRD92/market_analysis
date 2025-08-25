@@ -1,0 +1,63 @@
+# Nombre del workflow que aparecerá en la pestaña "Actions" de GitHub
+name: Build and Deploy to GitHub Pages
+
+# Controla cuándo se ejecutará el workflow
+on:
+  # Se ejecuta en los 'push' a la rama "main"
+  push:
+    branches: [ "main" ]
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Establece los permisos del GITHUB_TOKEN para permitir el despliegue en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue concurrente.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Tarea de construcción (build)
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip' # Habilita el caché para las dependencias de pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build static site
+        # El secreto FRED_API_KEY se pasa como una variable de entorno al script
+        run: python build.py
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+
+      - name: Upload artifact
+        # Sube el directorio 'dist' como un artefacto para la tarea de despliegue
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  # Tarea de despliegue (deploy)
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # Esta tarea depende de que la tarea 'build' termine con éxito
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
