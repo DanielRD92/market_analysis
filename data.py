@@ -32,6 +32,27 @@ def format_series_for_chartjs(series: pd.Series):
 
 # --- Funciones de Obtención de Datos ---
 
+def get_kpi_data():
+    """Obtiene los datos para los KPIs principales. Placeholder."""
+    print("Obteniendo datos de KPIs...")
+    # NOTA: La lógica real para obtener estos datos se añadirá más adelante.
+    # Por ahora, usamos valores de ejemplo.
+    # Se puede usar fred.get_series_latest_release() para obtener el último valor.
+    return {
+        "gdp_growth": {
+            "value": "2.7%",
+            "note": "Se espera una expansión moderada."
+        },
+        "inflation_rate": {
+            "value": "3.1%",
+            "note": "Mostrando signos de estabilización."
+        },
+        "interest_rate": {
+            "value": "4.5%",
+            "note": "La política monetaria sigue siendo restrictiva."
+        }
+    }
+
 def get_m2_liquidity_data():
     """Obtiene el agregado monetario M2."""
     print(f"Obteniendo datos de M2 desde {start_date}...")
@@ -74,6 +95,7 @@ def get_all_data():
     if not fred:
         raise Exception("El cliente de FRED no está inicializado. Revisa la variable de entorno FRED_API_KEY.")
     return {
+        "kpi_data": get_kpi_data(),
         "m2_liquidity": get_m2_liquidity_data(),
         "treasury_spread": get_treasury_spread_data(),
         "fed_funds_vs_10y": get_fed_funds_vs_10y_data(),

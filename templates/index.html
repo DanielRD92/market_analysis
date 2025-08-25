@@ -20,6 +20,24 @@
             <p class="text-gray-600 mt-2">Análisis visual de métricas financieras clave.</p>
         </header>
 
+        <section id="kpis" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-[#0A9396]">
+                    <h3 class="text-xl font-bold text-gray-700">Crecimiento PIB Global (Proyectado)</h3>
+                    <p class="text-5xl font-black text-[#005F73] mt-2">{{ chart_data.kpi_data.gdp_growth.value }}</p>
+                    <p class="text-sm text-gray-500 mt-1">{{ chart_data.kpi_data.gdp_growth.note }}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-[#EE9B00]">
+                    <h3 class="text-xl font-bold text-gray-700">Tasa de Inflación Actual</h3>
+                    <p class="text-5xl font-black text-[#CA6702] mt-2">{{ chart_data.kpi_data.inflation_rate.value }}</p>
+                    <p class="text-sm text-gray-500 mt-1">{{ chart_data.kpi_data.inflation_rate.note }}</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-[#9B2226]">
+                    <h3 class="text-xl font-bold text-gray-700">Tasa de Interés de Referencia</h3>
+                    <p class="text-5xl font-black text-[#AE2012] mt-2">{{ chart_data.kpi_data.interest_rate.value }}</p>
+                    <p class="text-sm text-gray-500 mt-1">{{ chart_data.kpi_data.interest_rate.note }}</p>
+                </div>
+        </section>
+
         <!-- Grid para los gráficos -->
         <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
