@@ -33,24 +33,40 @@ def format_series_for_chartjs(series: pd.Series):
 # --- Funciones de Obtención de Datos ---
 
 def get_kpi_data():
-    """Obtiene los datos para los KPIs principales. Placeholder."""
+    """Obtiene los datos para los KPIs principales usando datos reales de FRED."""
     print("Obteniendo datos de KPIs...")
-    # NOTA: La lógica real para obtener estos datos se añadirá más adelante.
-    # Por ahora, usamos valores de ejemplo.
-    # Se puede usar fred.get_series_latest_release() para obtener el último valor.
+
+    # 1. Crecimiento del PIB (último dato trimestral)
+    gdp_series = fred.get_series_latest_release(FRED_SERIES_IDS["GDP_GROWTH"])
+    gdp_value = gdp_series.iloc[-1]
+    gdp_date = gdp_series.index[-1]
+    gdp_data = {
+        "value": f"{gdp_value:.1f}%",
+        "note": f"Crecimiento trimestral Q{gdp_date.quarter} {gdp_date.year}."
+    }
+
+    # 2. Tasa de Inflación (último dato interanual)
+    inflation_series = fred.get_series_latest_release(FRED_SERIES_IDS["INFLATION_RATE"])
+    inflation_value = inflation_series.iloc[-1]
+    inflation_date = inflation_series.index[-1]
+    inflation_data = {
+        "value": f"{inflation_value:.1f}%",
+        "note": f"Variación interanual (PCE) Q{inflation_date.quarter} {inflation_date.year}."
+    }
+
+    # 3. Tasa de Interés de Referencia (Fed Funds Rate)
+    interest_rate_series = fred.get_series_latest_release(FRED_SERIES_IDS["FED_FUNDS"])
+    interest_rate_value = interest_rate_series.iloc[-1]
+    interest_rate_date = interest_rate_series.index[-1]
+    interest_rate_data = {
+        "value": f"{interest_rate_value:.2f}%",
+        "note": f"Tasa efectiva de Fondos Federales (Fed Funds) Q{interest_rate_date.quarter} {interest_rate_date.year}."
+    }
+
     return {
-        "gdp_growth": {
-            "value": "2.7%",
-            "note": "Se espera una expansión moderada."
-        },
-        "inflation_rate": {
-            "value": "3.1%",
-            "note": "Mostrando signos de estabilización."
-        },
-        "interest_rate": {
-            "value": "4.5%",
-            "note": "La política monetaria sigue siendo restrictiva."
-        }
+        "gdp_growth": gdp_data,
+        "inflation_rate": inflation_data,
+        "interest_rate": interest_rate_data
     }
 
 def get_m2_liquidity_data():
