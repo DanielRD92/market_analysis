@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas { max-height: 300px; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-600">Panel de Indicadores Económicos</h1>
+            <p class="text-slate-500 mt-2">Análisis visual de métricas financieras clave.</p>
+        </header>
+
+        <!-- Grid para los gráficos -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Gráfico 1: M2 Liquidity -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Liquidez Monetaria (M2)</h2>
+                <canvas id="m2Chart"></canvas>
+            </div>
+
+            <!-- Gráfico 2: Treasury Spread -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Spread: 10-Year Treasury vs 3-Month Bill</h2>
+                <canvas id="spreadChart"></canvas>
+            </div>
+
+            <!-- Gráfico 3: Fed Funds vs 10-Years -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Fed Funds Rate vs 10-Year Treasury Yield</h2>
+                <canvas id="fedFundsChart"></canvas>
+            </div>
+
+            <!-- Gráfico 4: HYG Price -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Precio del ETF HYG (High-Yield Bonds)</h2>
+                <canvas id="hygChart"></canvas>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-12 text-slate-500">
+            <p>Datos actualizados a la fecha. Generado estáticamente.</p>
+        </footer>
+    </div>
+
+    <!--
+      BLOQUE DE DATOS INYECTADO POR JINJA
+      El script build.py convierte el diccionario de Python en este objeto JavaScript.
+    -->
+    <script>
+        const chartData = {{ chart_data | tojson }};
+    </script>
+
+    <!-- Nuestro script de la aplicación que usará los datos de arriba -->
+    <script src="./static/js/app.js"></script>
+
+</body>
+</html>
