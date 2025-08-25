@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Paleta de colores "Brilliant Blues"
+    // Paleta de colores extraída del diseño de la infografía
     const colors = {
-        primary: '#60a5fa', // Softer Blue (blue-400)
-        secondary: '#2dd4bf', // Softer Teal (teal-400)
-        accent: '#818cf8', // Softer Indigo (indigo-400)
+        primary: '#0A9396',      // teal
+        secondary: '#EE9B00',    // orange
+        accent: '#005F73',       // darkTeal
+        negative: '#AE2012',     // darkRed
         grid: 'rgba(0, 0, 0, 0.08)', // Lighter grid for light background
         text: '#1e293b' // Darker text (slate-800)
     };
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: '10Y-3M Spread (%)',
                     data: data.data,
-                    borderColor: colors.accent, // Using accent color
+                    borderColor: colors.accent,
                     backgroundColor: colors.accent.replace(')', ', 0.2)'),
                     fill: true,
                     tension: 0.3,
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     {
                         label: '10-Year Treasury Yield (%)',
                         data: data.ten_year,
-                        borderColor: colors.secondary, // Using secondary color
+                        borderColor: colors.secondary,
                         tension: 0.3,
                         pointRadius: 0
                     }
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: 'High-Yield Index Yield (%)',
                     data: data.data,
-                    borderColor: colors.secondary, // Using secondary color
+                    borderColor: colors.secondary,
                     backgroundColor: colors.secondary.replace(')', ', 0.2)'),
                     fill: true,
                     tension: 0.3,
