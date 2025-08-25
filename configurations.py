@@ -7,3 +7,6 @@ FRED_SERIES_IDS = {
     "FED_FUNDS": "FEDFUNDS",
     "HIGH_YIELD_INDEX": "BAMLH0A0HYM2EY",
 }
+
+# Rango de años para obtener los datos históricos.
+DATA_YEARS_RANGE = 5
