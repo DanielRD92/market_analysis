@@ -103,15 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 4. Crear Gráfico de Precio HYG
-    const createHygChart = () => {
-        const data = chartData.hyg_price;
-        new Chart(document.getElementById('hygChart'), {
+    // 4. Crear Gráfico de Rendimiento High-Yield
+    const createHighYieldChart = () => {
+        const data = chartData.high_yield_index;
+        new Chart(document.getElementById('highYieldChart'), {
             type: 'line',
             data: {
                 labels: data.labels,
                 datasets: [{
-                    label: 'HYG Price ($)',
+                    label: 'High-Yield Index Yield (%)',
                     data: data.data,
                     borderColor: colors.secondary, // Using secondary color
                     backgroundColor: colors.secondary.replace(')', ', 0.2)'),
@@ -128,5 +128,5 @@ document.addEventListener('DOMContentLoaded', () => {
     createM2Chart();
     createSpreadChart();
     createFedFundsChart();
-    createHygChart();
+    createHighYieldChart();
 });
