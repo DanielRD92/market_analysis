@@ -14,9 +14,29 @@
 <body class="bg-gray-100 text-slate-800 font-sans">
 
     <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#005F73]">Panel de Indicadores Económicos</h1>
-            <p class="text-gray-600 mt-2">Análisis visual de métricas financieras clave.</p>
+        <header class="relative text-center mb-12">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold text-[#005F73]">Panel de Indicadores Económicos</h1>
+                <p class="text-gray-600 mt-2">Análisis visual de métricas financieras clave.</p>
+            </div>
+
+            {% if archived_reports %}
+            <div class="absolute top-0 right-0">
+                <button id="archive-button" class="p-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#005F73]">
+                    <svg class="h-8 w-8 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div id="archive-menu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <p class="px-4 py-2 text-sm text-gray-500 text-left border-b">Informes Anteriores</p>
+                        {% for report_file in archived_reports %}
+                        <a href="{{ report_file }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 text-left" role="menuitem">{{ report_file.replace('.html', '') }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </header>
 
         <section id="kpis" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
@@ -224,5 +244,20 @@
     <!-- Nuestro script de la aplicación que usará los datos de arriba -->
     <script src="./static/js/app.js"></script>
 
+    <script>
+        const archiveButton = document.getElementById('archive-button');
+        const archiveMenu = document.getElementById('archive-menu');
+
+        if (archiveButton && archiveMenu) {
+            archiveButton.addEventListener('click', () => {
+                archiveMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (event) => {
+                if (!archiveButton.contains(event.target) && !archiveMenu.contains(event.target)) {
+                    archiveMenu.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
