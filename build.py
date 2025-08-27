@@ -1,5 +1,7 @@
 import os
 import shutil
+from datetime import datetime
+
 from jinja2 import Environment, FileSystemLoader
 from data import get_all_data
 
@@ -27,7 +29,8 @@ def main():
 
     # 3. Renderizar la plantilla con los datos
     # Usamos el filtro 'tojson' de Jinja para convertir el dict de Python en un objeto JSON seguro para HTML
-    html_content = template.render(title='Infografía Financiera', chart_data=all_data)
+    today_date = datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')
+    html_content = template.render(title='Infografía Financiera', chart_data=all_data, today_date=today_date)
 
     # 4. Crear directorio de salida y guardar el HTML
     os.makedirs(OUTPUT_DIR, exist_ok=True)

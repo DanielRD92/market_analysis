@@ -9,7 +9,6 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        canvas { max-height: 300px; }
     </style>
 </head>
 <body class="bg-gray-100 text-slate-800 font-sans">
@@ -38,37 +37,142 @@
                 </div>
         </section>
 
-        <!-- Grid para los gráficos -->
-        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <!-- Gráfico 1: M2 Liquidity -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-700 mb-4">Liquidez Monetaria (M2)</h2>
-                <canvas id="m2Chart"></canvas>
+        <section id="m2-analysis" class="mb-12">
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-4">Análisis de la Liquidez Monetaria (M2)</h2>
+<!--                <p class="text-gray-600 mb-8 max-w-4xl">La masa monetaria M2 es un indicador clave de la liquidez en la economía. Su seguimiento nos ayuda a entender las presiones inflacionarias y la capacidad de inversión y gasto disponible en el mercado. Un aumento pronunciado puede anticipar un repunte en la inflación, mientras que una contracción puede señalar una ralentización económica.</p>-->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="lg:col-span-1">
+                         <div class="chart-container h-96">
+                            <canvas id="m2Chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 text-gray-600 space-y-4">
+                        <h3 class="text-xl font-bold text-gray-700">Interpretación del Gráfico</h3>
+                        <p>
+                            El gráfico muestra la evolución de la oferta monetaria M2. Un incremento sostenido, como el observado en los últimos años, sugiere una política monetaria expansiva. Esta liquidez adicional puede impulsar los precios de los activos y el consumo a corto plazo.
+                        </p>
+                        <p>
+                            Sin embargo, es crucial vigilar si este aumento de liquidez se traduce en un crecimiento económico real o si, por el contrario, genera burbujas especulativas y presiones inflacionistas que obliguen a los bancos centrales a endurecer sus políticas en el futuro.
+                        </p>
+                        <p>
+                            Actualmente se encuentra en un ciclo expansivo como se puede observar, lo que sumado a unas expectativas optimistas respecto al impacto de la IA en la economía y una cotización a ratios altos, podría estar anticipando señales de burbuja en el sector tecnológico.
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Grid para los gráficos -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- Gráfico 2: Treasury Spread -->
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-xl font-bold text-gray-700 mb-4">Spread: 10-Year Treasury vs 3-Month Bill</h2>
-                <canvas id="spreadChart"></canvas>
+                <div class="h-80">
+                    <canvas id="spreadChart"></canvas>
+                </div>
             </div>
 
-            <!-- Gráfico 3: Fed Funds vs 10-Years -->
+            <!-- Gráfico 3: Fed Funds Rate vs 10-Year Treasury Yield -->
             <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-700 mb-4">Fed Funds Rate vs 10-Year Treasury Yield</h2>
-                <canvas id="fedFundsChart"></canvas>
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Fed Funds vs 10-Year Treasury</h2>
+                <div class="h-80">
+                    <canvas id="fedFundsChart"></canvas>
+                </div>
             </div>
 
-            <!-- Gráfico 4: HYG Price -->
+            <!-- Gráfico 4: High-Yield Index -->
             <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-gray-700 mb-4">Rendimiento del Índice High-Yield (ICE BofA)</h2>
-                <canvas id="highYieldChart"></canvas>
+                <h2 class="text-xl font-bold text-gray-700 mb-4">Índice High-Yield (ICE BofA)</h2>
+                <div class="h-80">
+                    <canvas id="highYieldChart"></canvas>
+                </div>
             </div>
 
         </main>
 
+        <section id="catalysts" class="mt-12">
+            <h2 class="text-3xl font-bold text-[#005F73] mb-4 text-center">Catalizadores en el Horizonte</h2>
+            <p class="text-gray-600 mb-8 max-w-3xl mx-auto text-center">En medio de un ciclo altamente especulativo encontramos algunos catalizadores que puede impulsar o decepcionar al mercado en el futuro.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-600 mb-6 text-center">Catalizadores Alcistas</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-green-100 text-green-700 p-3 rounded-lg font-bold">1</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Liquidez elevada</p>
+                            </div>
+                            <div class="text-2xl text-green-500">→</div>
+                            <div class="flex-grow p-3 bg-green-50 rounded-md">
+                                <p class="font-semibold">Mayor capital entrando al mercado</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-green-100 text-green-700 p-3 rounded-lg font-bold">2</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Reunión de Jackson Hole</p>
+                            </div>
+                            <div class="text-2xl text-green-500">→</div>
+                            <div class="flex-grow p-3 bg-green-50 rounded-md">
+                                <p class="font-semibold">Relajación de los tipos de interés</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-green-100 text-green-700 p-3 rounded-lg font-bold">2</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Avance en las negociaciones de paz en Ucrania</p>
+                            </div>
+                            <div class="text-2xl text-green-500">→</div>
+                            <div class="flex-grow p-3 bg-green-50 rounded-md">
+                                <p class="font-semibold">Firma de la paz y de posibles acuerdos comerciales. Reactivación de cadenas de suministros</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-600 mb-6 text-center">Catalizadores Bajistas</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-red-100 text-red-700 p-3 rounded-lg font-bold">1</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Descorrelación cotizaciones-beneficios</p>
+                            </div>
+                            <div class="text-2xl text-red-500">→</div>
+                            <div class="flex-grow p-3 bg-red-50 rounded-md">
+                                <p class="font-semibold">Mercado cotizando a múltiplos muy elevados</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-red-100 text-red-700 p-3 rounded-lg font-bold">2</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Posible estancamiento en la bajada de tipos de interés</p>
+                            </div>
+                            <div class="text-2xl text-red-500">→</div>
+                            <div class="flex-grow p-3 bg-red-50 rounded-md">
+                                <p class="font-semibold">Bajadas de tipos vendrán condicionadas. Eliminación del FAIT</p>
+                            </div>
+                        </div>
+                         <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0 bg-red-100 text-red-700 p-3 rounded-lg font-bold">2</div>
+                            <div class="flex-grow p-3 bg-gray-50 rounded-md">
+                                <p class="font-semibold">Alta concentración en activos relacionados con IA</p>
+                            </div>
+                            <div class="text-2xl text-red-500">→</div>
+                            <div class="flex-grow p-3 bg-red-50 rounded-md">
+                                <p class="font-semibold">Posibles decepciones relacionadas con IA podrían provocar grandes movimientos en el mercado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="text-center mt-12 text-gray-600">
-            <p>Datos actualizados a la fecha. Generado estáticamente.</p>
+            <p>Datos actualizados a fecha {{ today_date }}. Generado estáticamente.</p>
         </footer>
     </div>
 
